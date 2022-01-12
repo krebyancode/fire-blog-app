@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Press+Start+2P&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eee;
+  color: black;
+  font-family: "Poppins", "sans-serif";
+  font-size: 1.1rem;
+}
+
+.main {
+  margin: 1.5rem;
+}
+
+code {
+  font-family: "Press Start 2P", cursive;
+  font-size: 1.1em;
+}
+
+.navbar {
+  padding: 1rem 3rem;
+  background-color: #0d47a1 !important;
+  color: white;
+}
+
+.form-label {
+  padding-left: 1.5rem;
+  margin-bottom: 0px;
+  font-size: 1.5rem;
+}
+
+.form-control {
+  width: 90%;
+}
+
+.btn-primary {
+  margin-left: 1.5rem;
+}
+
+.form-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.buttons h3 {
+  margin-top: 8px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: white;
+}
+
+.icons {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
