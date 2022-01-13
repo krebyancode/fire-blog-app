@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { auth } from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
-import { Form, Grid, Segment, Button } from "semantic-ui-react";
+import { Form, Grid, Segment, Button, Icon } from "semantic-ui-react";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,6 +25,18 @@ const Register = () => {
       navigate("/");
     } catch (err) {
       alert(err.message);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate("/");
+      // successNote("Logged in succesfully...");
+    } catch (err) {
+      alert(err.message);
+      console.log(err);
     }
   };
 
@@ -57,10 +74,10 @@ const Register = () => {
               <Form.Input
                 fluid
                 name="username"
-                icon="user"
+                icon="mail"
                 iconPosition="left"
-                placeholder="User name"
-                type="text"
+                placeholder="Email"
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -82,6 +99,13 @@ const Register = () => {
               </Button>
             </Segment>
           </Form>
+          <Button
+            color="google plus"
+            style={{ width: "100%", marginTop: "10px" }}
+            onClick={signInWithGoogle}
+          >
+            <Icon name="google" /> Sign in with Google
+          </Button>
         </Grid.Column>
       </Grid>
     </div>

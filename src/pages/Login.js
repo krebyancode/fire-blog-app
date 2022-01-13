@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
-import { Form, Grid, Segment, Button } from "semantic-ui-react";
+import { Form, Grid, Segment, Button, Icon } from "semantic-ui-react";
 import { successNote } from "../helpers/toastNotify";
 
 const Login = () => {
@@ -22,6 +26,18 @@ const Login = () => {
     }
   };
 
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate("/");
+      successNote("Logged in succesfully...");
+    } catch (err) {
+      alert(err.message);
+      console.log(err);
+    }
+  };
+
   return (
     <div className="main">
       <Grid textAlign="center" verticalAlign="middle">
@@ -34,10 +50,10 @@ const Login = () => {
               <Form.Input
                 fluid
                 name="username"
-                icon="user"
+                icon="mail"
                 iconPosition="left"
-                placeholder="Name"
-                type="text"
+                placeholder="Email"
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -59,6 +75,13 @@ const Login = () => {
               </Button>
             </Segment>
           </Form>
+          <Button
+            color="google plus"
+            style={{ width: "100%", marginTop: "10px" }}
+            onClick={signInWithGoogle}
+          >
+            <Icon name="google" /> Sign in with Google
+          </Button>
         </Grid.Column>
       </Grid>
     </div>
